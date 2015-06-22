@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+<PropertyGroup>
+    <!--<TargetAssembly>$(TargetDir)$(TargetFileName)</TargetAssembly>-->
+    <TargetAssembly>"C:\Users\jenkins\Documents\Test\CoverageTest\App\bin\Debug\App.exe"</TargetAssembly>
+    <NCOVEREXE>"C:\Program Files\NCover Desktop\ncover.exe"</NCOVEREXE>
+    <NCOVER_COVERAGE Condition=" '$(NCOVER_COVERAGE)' == '' ">false</NCOVER_COVERAGE>
+</PropertyGroup>
+<PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+</PropertyGroup>
+
+  <Target Name="TriggerNCoverPreinstrument" Condition="'$(NCOVER_COVERAGE)'=='true'" AfterTargets="" BeforeTargets="NCoverPrep">
+    <Message Text="******* SHOULD PRE-INSTRUMENT *********" Importance="High" />
+    <Message Text="NCover Pre-instrumentation for $(TargetAssembly)" Importance="High" />
+    <Exec Command="$(NCOVEREXE) instrument -v &quot;$(TargetAssembly)&quot;" ContinueOnError="true" />
+  </Target>
+
+  <Target Name="NCoverPrep" BeforeTargets="_ComputeAppxPackagePayload" Condition="'$(NCOVER_COVERAGE)'=='true'">
+    <Message Text="******* checkpoint 2 *********" Importance="High" />
+    <ItemGroup>
+       <!-- Limit the Item Group to just those assemblies needed. 
+       <CvgItem Include="$(MSBuildProjectDirectory)\$(OutputPath)\*<mystuff>.dll" />-->
+       <CvgItem Include="$(MSBuildProjectDirectory)\$(OutputPath)App.exe" />
+    </ItemGroup>
+
+    <!-- A little feedback to show our list of items to instrument -->
+    <Message Text="Pre-Instrumenting assembly: @(CvgItem)" Importance="High" />
+
+    <!-- Call the command to instrument each assembly -->
+    <Exec Command="$(NCOVEREXE) instrument &quot;%(CvgItem.FullPath)&quot;" ContinueOnError="true" />
+    <!-- OPTIONAL cleanup of static analysis files. These files are
+          embedded into the instrumented assemblies so aren’t needed past
+          the step of instrumentation.  
+    <ItemGroup>
+      <Unneeded Include="$(MSBuildProjectDirectory)\$(OutputPath)\coverage.zip"></Unneeded>
+    </ItemGroup>
+    <Delete Files="@(Unneeded)" />-->
+  </Target>
+
+  <!-- This Target will add PreInstrument DLL to the app package -->
+  <Target Name="NCoverPackageMap" BeforeTargets="_GenerateAppxPackageFile" Condition="'$(NCOVER_COVERAGE)'=='true'">
+      <Message Text="******* checkpoint 3 *********" Importance="High" />
+    <ItemGroup>
+       <NCoverPackage Include="$(MSBuildProjectDirectory)\$(OutputPath)NCover.PreInstrument.dll">
+         <TargetPath>NCover.PreInstrument.dll</TargetPath>
+       </NCoverPackage>
+    </ItemGroup>
+    <Copy SourceFiles="@(NCoverPackage)" DestinationFolder="$(MSBuildProjectDirectory)\$(OutputPath)AppX" />
+    <Message Text="Result $(MSBuildLastTaskResult): Finished modifying @(PackageMapFile)" Importance="High" />
+  </Target>
+</Project>
