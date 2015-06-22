@@ -14,7 +14,8 @@
     <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>CoverageTest_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>App_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>49477B3B3E1ED2A213A263F67BB046F71A449895</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -125,8 +126,8 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="App_TemporaryKey.pfx" />
     <None Include="Common\ReadMe.txt" />
-    <None Include="CoverageTest_TemporaryKey.pfx" />
     <Content Include="DataModel\SampleData.json" />
   </ItemGroup>
   <ItemGroup>

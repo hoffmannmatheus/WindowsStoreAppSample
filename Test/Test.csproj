@@ -19,7 +19,7 @@
     <PackageCertificateKeyFile>Test_TemporaryKey.pfx</PackageCertificateKeyFile>
     <AppxBundle>Never</AppxBundle>
     <AllowCrossPlatformRetargeting>False</AllowCrossPlatformRetargeting>
-    <PackageCertificateThumbprint>097B21CF9048186E4F0471AE628BD629020713EE</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>562BB5A9EC678C88E4A963570E786C8FF72FBB05</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
