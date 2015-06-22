@@ -1,4 +1,4 @@
-﻿using CoverageTest.Common;
+﻿using App.Common;
 
 using System;
 using System.Collections.Generic;
@@ -18,7 +18,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // The Split App template is documented at http://go.microsoft.com/fwlink/?LinkId=234228
-namespace CoverageTest
+namespace App
 {
     sealed partial class App : Application
     {

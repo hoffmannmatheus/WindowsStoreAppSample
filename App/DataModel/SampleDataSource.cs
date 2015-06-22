@@ -8,7 +8,7 @@ using Windows.Storage;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace CoverageTest.Data
+namespace App.Data
 {
     public class SampleDataItem
     {

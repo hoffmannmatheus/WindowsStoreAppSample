@@ -1,5 +1,5 @@
-﻿using CoverageTest.Common;
-using CoverageTest.Data;
+﻿using App.Common;
+using App.Data;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,9 +18,8 @@ using Windows.UI.Xaml.Navigation;
 
 // The Items Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234233
 
-namespace CoverageTest
+namespace App
 {
- 
     public sealed partial class ItemsPage : Page
     {
         private NavigationHelper navigationHelper;

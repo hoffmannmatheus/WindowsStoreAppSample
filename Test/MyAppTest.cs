@@ -13,7 +13,7 @@ namespace Test
         [TestMethod]
         public async Task TestGetGroups()
         {
-            var groups = await CoverageTest.Data.SampleDataSource.GetGroupsAsync();
+            var groups = await App.Data.SampleDataSource.GetGroupsAsync();
             Assert.IsTrue(groups.Count() > 0, "Should be true!");
         }
     }
